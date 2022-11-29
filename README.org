@@ -1,0 +1,14 @@
+A tiny library that gathers synonyms for a word using the amazing
+[[https://wordnet.princeton.edu/][Wordnet]].
+
+For example:
+
+#+begin_src elisp
+(wordnet-find-synonyms "systems")
+
+; => ("systems" "system" "scheme" "system of rules" "arrangement" "organization" "organisation")
+#+end_src
+
+
+Currently I use this for better searching my notes (i.e., look at the
+command =wordnet-insert-synoyms-last-word-for-ag=).
