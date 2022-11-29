@@ -91,7 +91,9 @@
 (defun wordnet-insert-synoyms-last-word-for-ag ()
   "Insert synonyms of last word for AG search."
   (interactive)
-  (insert (concat "|" (s-join "|" (wordnet-find-synonyms-last-word)))))
+  (insert (concat "|" (s-replace-all '((" " . "\\ ") ; necessary to avoid spaces to be treated as an OR in same file (e.g., "water | my house" would make ag union results for "water" and results that match both "my" and cut this result set with the ones also containing "house" resulting in very few matches)
+                                       ("(" . "\\(") (")" . "\\)") ("[" . "\\[") ("]" . "\\]"))
+                                     (s-join "|" (wordnet-find-synonyms-last-word))))))
 (global-set-key (kbd "C-c s i")  'wordnet-insert-synoyms-last-word-for-ag)
 
 (defun wordnet-find-synonyms-last-line ()
